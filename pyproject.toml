@@ -1,0 +1,22 @@
+[project]
+requires-python = "==3.12"
+
+[tool.ruff]
+lint.select = ["ALL"]
+
+lint.ignore = [
+    "D203",  # D211 is incompatible with D203 and D211 have higher priority.
+    "D213",  # D212 is incompatible with D213 and D212 have higher priority.
+    "COM812",  # COM812 is incompatible with formatter.
+]
+
+line-length = 80
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    # You can ignore these rules in tests, but not in source code.
+    "S101",  # Usage of assert statements.
+]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"

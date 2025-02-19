@@ -1,0 +1,18 @@
+# Controller
+fastapi==0.115.8
+python_multipart==0.0.20
+
+# Server
+uvicorn==0.34.0
+uvloop==0.21.0
+
+# Linting
+ruff==0.9.6
+wemake_python_styleguide==1.0.0
+
+# Static analysis
+mypy==1.15.0
+
+# Tests
+pytest-8.3.4
+pytest_asyncio==0.25.3
