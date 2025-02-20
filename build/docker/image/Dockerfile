@@ -13,6 +13,9 @@ RUN python -m pip install psycopg2_binary==2.9.10
 RUN python -m pip install uvicorn==0.34.0
 RUN python -m pip install uvloop==0.21.0
 
+RUN apt update -y
+RUN apt install -y curl
+
 COPY ./src/ ./src/
 COPY ./static/ ./static/
 
