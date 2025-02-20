@@ -14,8 +14,10 @@ Steps:
 
 1. Launch using Docker Compose -
 `docker compose -f .\build\docker\compose\docker-compose.yml up --build`
+2. Open [http://localhost:8000](http://localhost:8000/) in your browser.
 
 ## Notes
 
 * If you run it via Docker Compose, PostgreSQL will be used;
-otherwise (e.g., in tests), SQLite will be used.
+otherwise (e.g. in tests), SQLite will be used.
+* I used Tailwind with CDN, not with compiled CSS.
