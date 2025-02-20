@@ -6,9 +6,8 @@ Web application for calculating TF-IDF metric.
 
 Prerequisites:
 
-1. Python `==3.12.3`
-2. Docker Engine `==27.4.0`
-3. Docker Compose `==2.31.0`
+1. Docker Engine `==27.4.0`
+2. Docker Compose `==2.31.0`
 
 Steps:
 
