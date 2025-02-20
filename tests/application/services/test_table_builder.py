@@ -7,7 +7,7 @@ from src.application.services.table_builder import (
 )
 from src.domain.entities.text_file import TextFileEntity
 from src.domain.services.tf_idf import TFIDFDomainService
-from src.Infrastructure.repositories.in_memory_text_files import (
+from src.infrastructure.repositories.in_memory_text_files import (
     InMemoryTextFilesRepository,
 )
 

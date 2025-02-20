@@ -3,8 +3,8 @@
 import pytest
 
 from src.domain.entities.text_file import TextFileEntity
-from src.infrastructure.repositories.in_memory_text_files import (
-    InMemoryTextFilesRepository,
+from src.infrastructure.repositories.sqlite_text_files import (
+    SQLiteTextFilesRepository,
 )
 
 pytest_plugins: tuple[str, ...] = ("pytest_asyncio",)
@@ -13,7 +13,7 @@ pytest_plugins: tuple[str, ...] = ("pytest_asyncio",)
 @pytest.mark.asyncio
 async def test_in_memory_words_repository() -> None:
     """Test in memory words repository."""
-    repository: InMemoryTextFilesRepository = InMemoryTextFilesRepository()
+    repository: SQLiteTextFilesRepository = SQLiteTextFilesRepository()
 
     await repository.drop()
 

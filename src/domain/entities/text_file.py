@@ -15,10 +15,30 @@ class TextFileEntity:
             text (str): text file text.
 
         """
-        self._name = name
-        self._text = text
+        self._name: str = name
+        self._text: str = text
 
         self._counter: dict[str, int] | None = None
+
+    @property
+    def name(self) -> str:
+        """Get name.
+
+        Returns:
+            str: name
+
+        """
+        return self._name
+
+    @property
+    def text(self) -> str:
+        """Get text.
+
+        Returns:
+            str: text
+
+        """
+        return self._text
 
     async def get_words(self) -> dict[str, int]:
         """Get words.
