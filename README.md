@@ -24,6 +24,11 @@ line appears (about 20 seconds).
 * IDF will be specified only for words that are present in the current
 document, not for all words in general;
 * The data is first sorted by IDF, then by TF;
+
+## Technical stuff
+
 * If you run it via Docker Compose, PostgreSQL will be used, otherwise
 (e.g. in tests), SQLite will be used;
 * I used Tailwind with CDN, not with compiled CSS.
+* You can look at API docs at [http://localhost/docs](http://localhost/docs)
+* You can look at Traefik dashboard docs at [http://localhost:8080](http://localhost:8080)
