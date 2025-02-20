@@ -5,14 +5,14 @@ import json
 from fastapi.testclient import TestClient
 
 from src.infrastructure.repositories.sqlite_text_files import (
-    SQLiteTextFilesRepository,
+    SQLTextFilesRepository,
 )
 from src.presentation.controllers.fastapi.controller import app
 
 
 def test_build_table() -> None:
     """Test FastAPI build table view."""
-    repository: SQLiteTextFilesRepository = SQLiteTextFilesRepository()
+    repository: SQLTextFilesRepository = SQLTextFilesRepository()
     repository.drop()
 
     texts: list[str] = [

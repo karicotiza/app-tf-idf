@@ -4,6 +4,7 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 from src.domain.entities.text_file import TextFileEntity
 from src.domain.repository_interfaces.text_files import ITextFilesRepository
+from src.infrastructure.settings import settings
 
 
 class _TextFileModel(SQLModel, table=True):
@@ -12,12 +13,12 @@ class _TextFileModel(SQLModel, table=True):
     text: str
 
 
-_engine = create_engine("sqlite:///data/sqlite/database.db")
+_engine = create_engine(settings.database_url)
 SQLModel.metadata.create_all(_engine)
 
 
-class SQLiteTextFilesRepository(ITextFilesRepository):
-    """SQLite text file repository."""
+class SQLTextFilesRepository(ITextFilesRepository):
+    """SQL text file repository."""
 
     _session = Session(_engine)
 
@@ -101,5 +102,5 @@ class SQLiteTextFilesRepository(ITextFilesRepository):
             session.commit()
 
 
-_db: SQLiteTextFilesRepository = SQLiteTextFilesRepository()
+_db: SQLTextFilesRepository = SQLTextFilesRepository()
 _db.drop()

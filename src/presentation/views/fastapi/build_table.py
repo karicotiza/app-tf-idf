@@ -9,7 +9,7 @@ from src.application.services.table_builder import (
 )
 from src.domain.services.tf_idf import TFIDFDomainService
 from src.infrastructure.repositories.sqlite_text_files import (
-    SQLiteTextFilesRepository,
+    SQLTextFilesRepository,
 )
 from src.presentation.dtos.fastapi.build_table_request import Request
 from src.presentation.dtos.fastapi.build_table_response import Response
@@ -37,7 +37,7 @@ async def process_build_table(request: Annotated[Request, Form()]) -> Response:
     return Response(
         rows=await service.get_table(
             text_file=text_file,
-            repository=SQLiteTextFilesRepository(),
+            repository=SQLTextFilesRepository(),
             service=TFIDFDomainService(),
         ),
     )

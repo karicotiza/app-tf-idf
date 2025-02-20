@@ -4,6 +4,8 @@ python_multipart==0.0.20
 
 # Infrastructure
 sqlmodel==0.0.22
+pydantic_settings==2.7.1
+psycopg2==2.9.10
 
 # Server
 uvicorn==0.34.0
