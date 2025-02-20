@@ -14,7 +14,7 @@ class TableBuilderApplicationService:
         repository: ITextFilesRepository,
         service: TFIDFDomainService,
         limit: int = 50,
-    ) -> list[tuple[str, float, float]]:
+    ) -> dict[int, tuple[str, float, float]]:
         """Get table.
 
         Args:
@@ -42,11 +42,11 @@ class TableBuilderApplicationService:
         service: TFIDFDomainService,
         text_file: TextFileEntity,
         limit: int = 50,
-    ) -> list[tuple[str, float, float]]:
+    ) -> dict[int, tuple[str, float, float]]:
         memory: list[tuple[str, float, float]] = []
         total: int = await repository.get_total_text_files()
 
-        for word in await repository.get_all_words():
+        for word in await text_file.get_words():
             words: dict[str, int] = await text_file.get_words()
             memory.append(
                 (
@@ -56,11 +56,13 @@ class TableBuilderApplicationService:
                 )
             )
 
-        return sorted(
+        sorted_list: list[tuple[str, float, float]] = sorted(
             memory,
             key=lambda element: element[2],
             reverse=True,
         )[:limit]
+
+        return dict(enumerate(sorted_list))
 
     async def _get_tf(
         self,

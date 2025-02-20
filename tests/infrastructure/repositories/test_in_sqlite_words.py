@@ -14,8 +14,7 @@ pytest_plugins: tuple[str, ...] = ("pytest_asyncio",)
 async def test_in_memory_words_repository() -> None:
     """Test in memory words repository."""
     repository: SQLiteTextFilesRepository = SQLiteTextFilesRepository()
-
-    await repository.drop()
+    repository.drop()
 
     text_files_text: list[str] = [
         "One. Two. Three.",
@@ -35,7 +34,11 @@ async def test_in_memory_words_repository() -> None:
 
     assert await repository.get_total_text_files() == len(text_files_text)
     assert sorted(await repository.get_all_words()) == [
-        "five", "four", "one", "three", "two",
+        "five",
+        "four",
+        "one",
+        "three",
+        "two",
     ]
     assert (
         await repository.get_total_text_files_with_word("three")

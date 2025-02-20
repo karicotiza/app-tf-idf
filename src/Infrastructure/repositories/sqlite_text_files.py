@@ -92,10 +92,14 @@ class SQLiteTextFilesRepository(ITextFilesRepository):
 
         return list(memory)
 
-    async def drop(self) -> None:
+    def drop(self) -> None:
         """Drop all data."""
         with Session(_engine) as session:
             for row in session.exec(select(_TextFileModel)):
                 session.delete(row)
 
             session.commit()
+
+
+_db: SQLiteTextFilesRepository = SQLiteTextFilesRepository()
+_db.drop()
