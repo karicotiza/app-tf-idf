@@ -58,7 +58,7 @@ class TableBuilderApplicationService:
 
         sorted_list: list[tuple[str, float, float]] = sorted(
             memory,
-            key=lambda element: element[2],
+            key=lambda element: (element[2], element[1]),
             reverse=True,
         )[:limit]
 
