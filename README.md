@@ -14,9 +14,9 @@ Steps:
 
 1. Launch using Docker Compose -
 `docker compose -f .\build\docker\compose\docker-compose.yml up --build`
-2. Wait until `app-tf-idf-server | INFO: Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)`
+2. Wait until `server-# | INFO: Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)`
 line appears (about 20 seconds).
-3. Open [http://localhost:8000](http://localhost:8000/) in your browser.
+3. Open [http://localhost](http://localhost) in your browser.
 
 ## Notes
 

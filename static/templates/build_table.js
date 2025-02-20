@@ -19,7 +19,7 @@ document.getElementById("uploadForm").addEventListener("submit", async function(
         });
 
         if (response.status === 415) {
-            status.innerText = "Not a utf-8 text file.";
+            status.innerText = "Not a UTF-8 text file.";
             return;
         }
 
