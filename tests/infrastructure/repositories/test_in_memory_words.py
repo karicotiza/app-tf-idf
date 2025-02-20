@@ -3,7 +3,7 @@
 import pytest
 
 from src.domain.entities.text_file import TextFileEntity
-from src.infrastructure.repositories.in_memory_text_files import (
+from src.infrastructure_.repositories.in_memory_text_files import (
     InMemoryTextFilesRepository,
 )
 

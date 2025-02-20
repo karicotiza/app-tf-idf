@@ -4,7 +4,7 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 from src.domain.entities.text_file import TextFileEntity
 from src.domain.repository_interfaces.text_files import ITextFilesRepository
-from src.infrastructure.settings import settings
+from src.infrastructure_.settings import settings
 
 
 class _TextFileModel(SQLModel, table=True):
