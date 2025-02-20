@@ -9,7 +9,7 @@ from src.application.services.table_builder import (
     TableBuilderApplicationService,
 )
 from src.domain.services.tf_idf import TFIDFDomainService
-from src.infrastructure.repositories.sqlite_text_files import (
+from src.infrastructure.repositories.sql_text_files import (
     SQLTextFilesRepository,
 )
 from src.presentation.dtos.fastapi.build_table_request import Request
