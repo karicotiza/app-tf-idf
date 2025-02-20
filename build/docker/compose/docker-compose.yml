@@ -1,0 +1,19 @@
+name: app-tf-idf
+
+services:
+  server:
+    container_name: app-tf-idf-server
+    build: 
+      dockerfile: ./build/docker/image/Dockerfile
+      context: ../../../
+    restart: unless-stopped
+    volumes:
+      - ../../../data/sqlite:/app/data/sqlite
+    ports:
+      - 8000:8000
+    networks:
+      - app-chat-network
+
+networks:
+  app-chat-network:
+    driver: bridge
