@@ -7,18 +7,36 @@ from string import punctuation
 class TextFileEntity:
     """Text file entity."""
 
-    def __init__(self, name: str, text: str) -> None:
+    def __init__(
+        self,
+        name: str,
+        text: str,
+        *,
+        word_occurrences: dict[str, int] | None = None,
+        words_total: int | None = 0,
+    ) -> None:
         """Make new instance.
 
         Args:
             name (str): text file name.
             text (str): text file text.
+            word_occurrences: dict[str, int] | None: word as key, occurrences
+                as value. Defaults to None
+            words_total: dict[str, int] | None: words total.
 
         """
         self._name: str = name
         self._text: str = text
 
-        self._counter: dict[str, int] | None = None
+        if word_occurrences:
+            self._word_occurrences: dict[str, int] = word_occurrences
+        else:
+            self._word_occurrences = {}
+
+        if words_total:
+            self._words_total: int = words_total
+        else:
+            self._words_total = 0
 
     @property
     def name(self) -> str:
@@ -40,31 +58,38 @@ class TextFileEntity:
         """
         return self._text
 
-    async def get_words(self) -> dict[str, int]:
-        """Get words.
+    @property
+    def words_occurrences(self) -> dict[str, int]:
+        """Get word occurrences.
 
         Returns:
-            dict[str, int]: word as a key, amount as a value.
+            dict[str, int]: word as key, occurrences as value.
 
         """
-        if self._counter is None:
-            await self._count_words()
+        if not self._word_occurrences:
+            self._word_occurrences = self._count_words()
 
-        return self._counter
+        return self._word_occurrences
 
-    async def get_total_words(self) -> int:
+    @property
+    def words_total(self) -> int:
         """Get total amount of words.
 
         Returns:
             int: total amount of words.
 
         """
-        if self._counter is None:
-            await self._count_words()
+        if not self._word_occurrences:
+            self._word_occurrences = self._count_words()
 
-        return self._counter.total()
+        if not self._words_total:
+            self._words_total = sum(
+                occurrence for occurrence in self._word_occurrences.values()
+            )
 
-    async def _count_words(self) -> None:
-        self._counter = Counter(
+        return self._words_total
+
+    def _count_words(self) -> dict[str, int]:
+        return dict(Counter(
             word.strip(punctuation).lower() for word in self._text.split()
-        )
+        ))

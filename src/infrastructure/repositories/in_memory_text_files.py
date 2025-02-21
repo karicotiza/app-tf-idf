@@ -39,7 +39,7 @@ class InMemoryTextFilesRepository(ITextFilesRepository):
         counter: int = 0
 
         for text_file in self._db:
-            words: dict[str, int] = await text_file.get_words()
+            words: dict[str, int] = text_file.words_occurrences
             if word in words:
                 counter += 1
 
@@ -55,7 +55,7 @@ class InMemoryTextFilesRepository(ITextFilesRepository):
         memory: set[str] = set()
 
         for text_file in self._db:
-            for word in await text_file.get_words():
+            for word in text_file.words_occurrences:
                 memory.add(word)
 
         return list(memory)

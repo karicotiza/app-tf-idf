@@ -18,5 +18,5 @@ async def test_text_file_entity() -> None:
     expected_words: dict[str, int] = {"one": 1, "three": 3, "two": 2}
     expected_total_words: int = 6
 
-    assert await text_file.get_words() == expected_words
-    assert await text_file.get_total_words() == expected_total_words
+    assert text_file.words_occurrences == expected_words
+    assert text_file.words_total == expected_total_words

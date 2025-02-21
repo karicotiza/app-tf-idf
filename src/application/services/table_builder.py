@@ -29,40 +29,22 @@ class TableBuilderApplicationService:
         """
         await repository.add_text_file(text_file)
 
-        return await self._get_top_words_by_idf(
-            repository=repository,
-            service=service,
-            text_file=text_file,
-            limit=limit,
-        )
-
-    async def _get_top_words_by_idf(
-        self,
-        repository: ITextFilesRepository,
-        service: TFIDFDomainService,
-        text_file: TextFileEntity,
-        limit: int = 50,
-    ) -> dict[int, tuple[str, float, float]]:
-        memory: list[tuple[str, float, float]] = []
         total: int = await repository.get_total_text_files()
+        words: dict[str, int] = text_file.words_occurrences
 
-        for word in await text_file.get_words():
-            words: dict[str, int] = await text_file.get_words()
-            memory.append(
+        top_words_by_idf: list[tuple[str, float, float]] = sorted(
+            [
                 (
                     word,
                     await self._get_tf(word, service, words, text_file),
                     await self._get_idf(word, service, repository, total),
-                )
-            )
-
-        sorted_list: list[tuple[str, float, float]] = sorted(
-            memory,
+                ) for word in words
+            ],
             key=lambda element: (element[2], element[1]),
             reverse=True,
-        )[:limit]
+        )
 
-        return dict(enumerate(sorted_list))
+        return dict(enumerate(top_words_by_idf[:limit]))
 
     async def _get_tf(
         self,
@@ -73,7 +55,7 @@ class TableBuilderApplicationService:
     ) -> float:
         return await service.calculate_tf(
             word_occurrences=words_if_text_file.get(word, 0),
-            amount_of_words_in_document=await text_file.get_total_words(),
+            amount_of_words_in_document=text_file.words_total,
         )
 
     async def _get_idf(
