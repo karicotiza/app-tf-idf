@@ -8,7 +8,7 @@ class Settings(BaseSettings):
 
     database_url: str = "sqlite:///data/sqlite/database.db"
 
-    model_config = SettingsConfigDict(env_prefix="backend_")
+    model_config = SettingsConfigDict(env_prefix="server_")
 
 
 settings: Settings = Settings()
