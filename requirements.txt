@@ -22,6 +22,6 @@ wemake_python_styleguide==1.0.0
 mypy==1.15.0
 
 # Tests
-pytest-8.3.4
+pytest==8.3.4
 pytest_asyncio==0.25.3
-httpx-0.28.1
+httpx==0.28.1
