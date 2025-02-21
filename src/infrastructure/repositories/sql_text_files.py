@@ -30,7 +30,6 @@ class SQLTextFilesRepository(ITextFilesRepository):
         """Make new instance."""
         self._engine = create_engine(settings.database_url)
         SQLModel.metadata.create_all(self._engine)
-        _session = Session(self._engine)
 
     async def add_text_file(self, text_file: TextFileEntity) -> None:
         """Add text file to repository.
