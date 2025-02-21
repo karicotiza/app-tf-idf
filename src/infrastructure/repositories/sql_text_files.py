@@ -46,6 +46,7 @@ class SQLTextFilesRepository(ITextFilesRepository):
             )
 
             session.add(text_file_model)
+            session.commit()
 
             for word, occurrences in text_file.words_occurrences.items():
                 word_occurrences_model: _WordOccurrencesModel = (
@@ -57,8 +58,7 @@ class SQLTextFilesRepository(ITextFilesRepository):
                 )
 
                 session.add(word_occurrences_model)
-
-            session.commit()
+                session.commit()
 
     async def get_total_text_files(self) -> int:
         """Get total amount of text files.
